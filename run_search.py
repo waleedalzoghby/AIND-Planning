@@ -60,7 +60,7 @@ def run_search(problem, search_function, parameter=None):
     end = timer()
     print("\nExpansions   Goal Tests   New Nodes")
     print("{}\n".format(ip))
-    show_solution(node, end - start)
+    str = show_solution(node, end - start)
     print()
 
 
@@ -107,9 +107,14 @@ def show_solution(node, elapsed_time):
               "Make sure you have completed the AirCargoProblem implementation " +
               "and pass all unit tests first.")
     else:
+        str = ''
         print("Plan length: {}  Time elapsed in seconds: {}".format(len(node.solution()), elapsed_time))
+        str += "Plan length: {}  Time elapsed in seconds: {}".format(len(node.solution()), elapsed_time)
         for action in node.solution():
             print("{}{}".format(action.name, action.args))
+            str += '\n'
+            str += "{}{}".format(action.name, action.args)
+        return str
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description="Solve air cargo planning problems " + 
